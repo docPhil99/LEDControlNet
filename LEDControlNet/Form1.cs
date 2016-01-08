@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace LEDControlNet
 {
+    //just a simple form to hold the user control
     public partial class Form1 : Form
     {
         public Form1()

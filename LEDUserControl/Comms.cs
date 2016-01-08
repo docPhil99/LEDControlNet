@@ -61,6 +61,7 @@ namespace LEDControlNet
                 {
                     currentPort = new SerialPort(port, 9600);
                     Console.WriteLine(currentPort.PortName);
+                    
                 }
 
             }

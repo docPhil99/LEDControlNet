@@ -26,12 +26,8 @@ namespace LEDControlNet
         public LEDUserControl1()
         {
             InitializeComponent();
-           /* trackBar1.Scroll += (s, e) =>
-                {
-                    if (clicked)
-                        return;
-                    Console.WriteLine("Scroll "+trackBar1.Value);
-                };*/
+           
+            //a simple latching method to ensure the mouse button is released before sending data to comm port.
             trackBar1.MouseDown += (s,
                         e) =>
             {
@@ -45,7 +41,8 @@ namespace LEDControlNet
 
                 clicked = false;
                 Console.WriteLine("Mouse up"+trackBar1.Value);
-                this.PWMValue=(byte)trackBar1.Value;
+                if(this.checkBox1.Checked)
+                    this.PWMValue=(byte)(255-trackBar1.Value);
             };
             comm = new Comms();
             comm.ScanPorts();
@@ -57,6 +54,7 @@ namespace LEDControlNet
             catch
             {
                 this.checkBox1.Checked = false;
+                this.trackBar1.Enabled = false;
             }
         }
 
